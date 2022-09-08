@@ -13,19 +13,13 @@ export interface IMasonrySizes {
   small: number,
 }
 
-const defaultSize: IMasonrySizes = {
-  big: 500,
-  avg: 410,
-  small: 320,
-}
-
 @Component
 export default class VMasonryItem extends Vue {
   @Prop({ type: Object, required: true }) readonly item!: IMasonryItem;
   @Prop({ type: Number, default: 0 }) rowHeight!: number;
   @Prop({ type: Number, default: 8 }) rowGap!: number;
   @Prop({ type: String, default: 'div' }) itemTag!: string;
-  @Prop({ type: Object, default: defaultSize }) sizes!: IMasonrySizes;
+  @Prop({ type: Object, default: () => ({ big: 500, avg: 410, small: 320 }) }) sizes!: IMasonrySizes;
 
   $refs!: {
     masonryItem: HTMLElement;
